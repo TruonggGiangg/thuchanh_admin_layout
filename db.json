@@ -1,4 +1,398 @@
 {
+
+
+   "users": [
+      {
+        "_id": "user1",
+        "name": "Nguyen Van A 1",
+        "email": "nguyenvana@example.com",
+        "age": 25,
+        "gender": "Nam",
+        "address": "123 Đường Láng, Hà Nội",
+        "__v": 0,
+        "role": "admin",
+        "createdAt": "2025-01-01T10:00:00Z",
+        "updatedAt": "2025-01-02T15:30:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword123"
+      },
+      {
+        "_id": "user2",
+        "name": "Tran Thi B 1",
+        "email": "tranthib@example.com",
+        "age": 30,
+        "gender": "Nữ",
+        "address": "456 Lê Lợi, TP.HCM",
+        "__v": 1,
+        "role": "user",
+        "createdAt": "2025-02-01T09:15:00Z",
+        "updatedAt": "2025-02-03T14:45:00Z",
+        "isDeleted": "2025-02-04T10:00:00Z",
+        "deletedAt": "2025-02-04T10:00:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "deletedBy": {
+          "_id": "admin3",
+          "email": "admin3@example.com"
+        },
+        "password": "hashedPassword456"
+      },
+      {
+        "_id": "user3",
+        "name": "Le Van C 1",
+        "email": "levanc@example.com",
+        "age": 22,
+        "gender": "Nam",
+        "address": "789 Nguyễn Huệ, Đà Nẵng",
+        "__v": 0,
+        "role": "moderator",
+        "createdAt": "2025-03-01T08:30:00Z",
+        "updatedAt": "2025-03-04T16:00:00Z",
+        "createdBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword789"
+      },
+      {
+        "_id": "user1",
+        "name": "Nguyen Van A 2",
+        "email": "nguyenvana@example.com",
+        "age": 25,
+        "gender": "Nam",
+        "address": "123 Đường Láng, Hà Nội",
+        "__v": 0,
+        "role": "admin",
+        "createdAt": "2025-01-01T10:00:00Z",
+        "updatedAt": "2025-01-02T15:30:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword123"
+      },
+      {
+        "_id": "user2",
+        "name": "Tran Thi B",
+        "email": "tranthib@example.com",
+        "age": 30,
+        "gender": "Nữ",
+        "address": "456 Lê Lợi, TP.HCM",
+        "__v": 1,
+        "role": "user",
+        "createdAt": "2025-02-01T09:15:00Z",
+        "updatedAt": "2025-02-03T14:45:00Z",
+        "isDeleted": "2025-02-04T10:00:00Z",
+        "deletedAt": "2025-02-04T10:00:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "deletedBy": {
+          "_id": "admin3",
+          "email": "admin3@example.com"
+        },
+        "password": "hashedPassword456"
+      },
+      {
+        "_id": "user3",
+        "name": "Le Van C",
+        "email": "levanc@example.com",
+        "age": 22,
+        "gender": "Nam",
+        "address": "789 Nguyễn Huệ, Đà Nẵng",
+        "__v": 0,
+        "role": "moderator",
+        "createdAt": "2025-03-01T08:30:00Z",
+        "updatedAt": "2025-03-04T16:00:00Z",
+        "createdBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword789"
+      },
+      {
+        "_id": "user1",
+        "name": "Nguyen Van A 3",
+        "email": "nguyenvana@example.com",
+        "age": 25,
+        "gender": "Nam",
+        "address": "123 Đường Láng, Hà Nội",
+        "__v": 0,
+        "role": "admin",
+        "createdAt": "2025-01-01T10:00:00Z",
+        "updatedAt": "2025-01-02T15:30:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword123"
+      },
+      {
+        "_id": "user2",
+        "name": "Tran Thi B",
+        "email": "tranthib@example.com",
+        "age": 30,
+        "gender": "Nữ",
+        "address": "456 Lê Lợi, TP.HCM",
+        "__v": 1,
+        "role": "user",
+        "createdAt": "2025-02-01T09:15:00Z",
+        "updatedAt": "2025-02-03T14:45:00Z",
+        "isDeleted": "2025-02-04T10:00:00Z",
+        "deletedAt": "2025-02-04T10:00:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "deletedBy": {
+          "_id": "admin3",
+          "email": "admin3@example.com"
+        },
+        "password": "hashedPassword456"
+      },
+      {
+        "_id": "user3",
+        "name": "Le Van C",
+        "email": "levanc@example.com",
+        "age": 22,
+        "gender": "Nam",
+        "address": "789 Nguyễn Huệ, Đà Nẵng",
+        "__v": 0,
+        "role": "moderator",
+        "createdAt": "2025-03-01T08:30:00Z",
+        "updatedAt": "2025-03-04T16:00:00Z",
+        "createdBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword789"
+      },
+      {
+        "_id": "user1",
+        "name": "Nguyen Van A 4",
+        "email": "nguyenvana@example.com",
+        "age": 25,
+        "gender": "Nam",
+        "address": "123 Đường Láng, Hà Nội",
+        "__v": 0,
+        "role": "admin",
+        "createdAt": "2025-01-01T10:00:00Z",
+        "updatedAt": "2025-01-02T15:30:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword123"
+      },
+      {
+        "_id": "user2",
+        "name": "Tran Thi B",
+        "email": "tranthib@example.com",
+        "age": 30,
+        "gender": "Nữ",
+        "address": "456 Lê Lợi, TP.HCM",
+        "__v": 1,
+        "role": "user",
+        "createdAt": "2025-02-01T09:15:00Z",
+        "updatedAt": "2025-02-03T14:45:00Z",
+        "isDeleted": "2025-02-04T10:00:00Z",
+        "deletedAt": "2025-02-04T10:00:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "deletedBy": {
+          "_id": "admin3",
+          "email": "admin3@example.com"
+        },
+        "password": "hashedPassword456"
+      },
+      {
+        "_id": "user3",
+        "name": "Le Van C",
+        "email": "levanc@example.com",
+        "age": 22,
+        "gender": "Nam",
+        "address": "789 Nguyễn Huệ, Đà Nẵng",
+        "__v": 0,
+        "role": "moderator",
+        "createdAt": "2025-03-01T08:30:00Z",
+        "updatedAt": "2025-03-04T16:00:00Z",
+        "createdBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword789"
+      },
+      {
+        "_id": "user1",
+        "name": "Nguyen Van A",
+        "email": "nguyenvana@example.com",
+        "age": 25,
+        "gender": "Nam",
+        "address": "123 Đường Láng, Hà Nội",
+        "__v": 0,
+        "role": "admin",
+        "createdAt": "2025-01-01T10:00:00Z",
+        "updatedAt": "2025-01-02T15:30:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword123"
+      },
+      {
+        "_id": "user2",
+        "name": "Tran Thi B",
+        "email": "tranthib@example.com",
+        "age": 30,
+        "gender": "Nữ",
+        "address": "456 Lê Lợi, TP.HCM",
+        "__v": 1,
+        "role": "user",
+        "createdAt": "2025-02-01T09:15:00Z",
+        "updatedAt": "2025-02-03T14:45:00Z",
+        "isDeleted": "2025-02-04T10:00:00Z",
+        "deletedAt": "2025-02-04T10:00:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "deletedBy": {
+          "_id": "admin3",
+          "email": "admin3@example.com"
+        },
+        "password": "hashedPassword456"
+      },
+      {
+        "_id": "user3",
+        "name": "Le Van C",
+        "email": "levanc@example.com",
+        "age": 22,
+        "gender": "Nam",
+        "address": "789 Nguyễn Huệ, Đà Nẵng",
+        "__v": 0,
+        "role": "moderator",
+        "createdAt": "2025-03-01T08:30:00Z",
+        "updatedAt": "2025-03-04T16:00:00Z",
+        "createdBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword789"
+      },
+      {
+        "_id": "user1",
+        "name": "Nguyen Van A",
+        "email": "nguyenvana@example.com",
+        "age": 25,
+        "gender": "Nam",
+        "address": "123 Đường Láng, Hà Nội",
+        "__v": 0,
+        "role": "admin",
+        "createdAt": "2025-01-01T10:00:00Z",
+        "updatedAt": "2025-01-02T15:30:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword123"
+      },
+      {
+        "_id": "user2",
+        "name": "Tran Thi B",
+        "email": "tranthib@example.com",
+        "age": 30,
+        "gender": "Nữ",
+        "address": "456 Lê Lợi, TP.HCM",
+        "__v": 1,
+        "role": "user",
+        "createdAt": "2025-02-01T09:15:00Z",
+        "updatedAt": "2025-02-03T14:45:00Z",
+        "isDeleted": "2025-02-04T10:00:00Z",
+        "deletedAt": "2025-02-04T10:00:00Z",
+        "createdBy": {
+          "_id": "admin1",
+          "email": "admin1@example.com"
+        },
+        "deletedBy": {
+          "_id": "admin3",
+          "email": "admin3@example.com"
+        },
+        "password": "hashedPassword456"
+      },
+      {
+        "_id": "user3",
+        "name": "Le Van C",
+        "email": "levanc@example.com",
+        "age": 22,
+        "gender": "Nam",
+        "address": "789 Nguyễn Huệ, Đà Nẵng",
+        "__v": 0,
+        "role": "moderator",
+        "createdAt": "2025-03-01T08:30:00Z",
+        "updatedAt": "2025-03-04T16:00:00Z",
+        "createdBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "updatedBy": {
+          "_id": "admin2",
+          "email": "admin2@example.com"
+        },
+        "password": "hashedPassword789"
+      }
+    ],
     "products": [
       { "id": 1, "name": "Book A", "price": 10 },
       { "id": 2, "name": "Book B", "price": 15 }

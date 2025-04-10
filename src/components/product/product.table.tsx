@@ -1,244 +1,109 @@
-import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { ProTable, TableDropdown } from '@ant-design/pro-components';
-import { Button, Dropdown, Space, Tag } from 'antd';
-import { useRef } from 'react';
-import request from 'umi-request';
-export const waitTimePromise = async (time: number = 100) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, time);
-  });
-};
+import { DeleteOutlined, EditOutlined, ExportOutlined, ImportOutlined, MoreOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Table, Pagination, Spin } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export const waitTime = async (time: number = 100) => {
-  await waitTimePromise(time);
-};
-
-type GithubIssueItem = {
-  url: string;
-  id: number;
-  number: number;
-  title: string;
-  labels: {
-    name: string;
-    color: string;
-  }[];
-  state: string;
-  comments: number;
-  created_at: string;
-  updated_at: string;
-  closed_at?: string;
-};
-
-const columns: ProColumns<GithubIssueItem>[] = [
-  {
-    dataIndex: 'index',
-    valueType: 'indexBorder',
-    width: 48,
-  },
-  {
-    title: '标题',
-    dataIndex: 'title',
-    copyable: true,
-    ellipsis: true,
-    tooltip: '标题过长会自动收缩',
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-  },
-  {
-    disable: true,
-    title: '状态',
-    dataIndex: 'state',
-    filters: true,
-    onFilter: true,
-    ellipsis: true,
-    valueType: 'select',
-    valueEnum: {
-      all: { text: '超长'.repeat(50) },
-      open: {
-        text: '未解决',
-        status: 'Error',
-      },
-      closed: {
-        text: '已解决',
-        status: 'Success',
-        disabled: true,
-      },
-      processing: {
-        text: '解决中',
-        status: 'Processing',
-      },
-    },
-  },
-  {
-    disable: true,
-    title: '标签',
-    dataIndex: 'labels',
-    search: false,
-    renderFormItem: (_, { defaultRender }) => {
-      return defaultRender(_);
-    },
-    render: (_, record) => (
-      <Space>
-        {record.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
-            {name}
-          </Tag>
-        ))}
-      </Space>
-    ),
-  },
-  {
-    title: '创建时间',
-    key: 'showTime',
-    dataIndex: 'created_at',
-    valueType: 'date',
-    sorter: true,
-    hideInSearch: true,
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'created_at',
-    valueType: 'dateRange',
-    hideInTable: true,
-    search: {
-      transform: (value) => {
-        return {
-          startTime: value[0],
-          endTime: value[1],
-        };
-      },
-    },
-  },
-  {
-    title: '操作',
-    valueType: 'option',
-    key: 'option',
-    render: (text, record, _, action) => [
-      <a
-        key="editable"
-        onClick={() => {
-          action?.startEditable?.(record.id);
-        }}
-      >
-        编辑
-      </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
-        查看
-      </a>,
-      <TableDropdown
-        key="actionGroup"
-        onSelect={() => action?.reload()}
-        menus={[
-          { key: 'copy', name: '复制' },
-          { key: 'delete', name: '删除' },
-        ]}
-      />,
-    ],
-  },
-];
-
-const ProductTable = () => {
-const actionRef = useRef<ActionType | null>(null);
-  return (
-    <ProTable<GithubIssueItem>
-      columns={columns}
-      actionRef={actionRef}
-      cardBordered
-      request={async (params, sort, filter) => {
-        console.log(sort, filter);
-        await waitTime(2000);
-        return request<{
-          data: GithubIssueItem[];
-        }>('https://proapi.azurewebsites.net/github/issues', {
-          params,
-        });
-      }}
-      editable={{
-        type: 'multiple',
-      }}
-      columnsState={{
-        persistenceKey: 'pro-table-singe-demos',
-        persistenceType: 'localStorage',
-        defaultValue: {
-          option: { fixed: 'right', disable: true },
-        },
-        onChange(value) {
-          console.log('value: ', value);
-        },
-      }}
-      rowKey="id"
-      search={{
-        labelWidth: 'auto',
-      }}
-      options={{
-        setting: {
-          listsHeight: 400,
-        },
-      }}
-      form={{
-        // 由于配置了 transform，提交的参数与定义的不同这里需要转化一下
-        syncToUrl: (values, type) => {
-          if (type === 'get') {
-            return {
-              ...values,
-              created_at: [values.startTime, values.endTime],
-            };
-          }
-          return values;
-        },
-      }}
-      pagination={{
-        pageSize: 5,
-        onChange: (page) => console.log(page),
-      }}
-      dateFormatter="string"
-      headerTitle="高级表格"
-      toolBarRender={() => [
-        <Button
-          key="button"
-          icon={<PlusOutlined />}
-          onClick={() => {
-            actionRef.current?.reload();
-          }}
-          type="primary"
-        >
-          新建
-        </Button>,
-        <Dropdown
-          key="menu"
-          menu={{
-            items: [
-              {
-                label: '1st item',
-                key: '1',
-              },
-              {
-                label: '2nd item',
-                key: '2',
-              },
-              {
-                label: '3rd item',
-                key: '3',
-              },
-            ],
-          }}
-        >
-          <Button>
-            <EllipsisOutlined />
-          </Button>
-        </Dropdown>,
-      ]}
-    />
-  );
+interface IGetUser {
+  _id: string;
+  name: string;
+  email: string;
+  age: number;
+  gender: string;
+  address: string;
+  role: string;
+  createdAt?: Date;
 }
 
-export default ProductTable
+const UserAdminMain = () => {
+  const [users, setUsers] = useState<IGetUser[]>([]);
+  const [meta, setMeta] = useState({ total: 0, page: 1, pageSize: 18 });
+  const [loading, setLoading] = useState(false);
+
+  // Fetch data khi page hoặc pageSize thay đổi
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+
+      try {
+        const url = `http://localhost:8080/users?_page=${meta.page}&_limit=${meta.pageSize}`;
+        console.log("Fetching URL:", url); // Debug URL gửi đi
+
+        const response = await axios.get(url);
+
+        setUsers(response.data);
+
+        // Lấy total từ header (JSON Server gửi trong 'x-total-count')
+        const totalRecords = Number(response.headers['x-total-count']) || 18;
+        setMeta((prev) => ({ ...prev, total: totalRecords }));
+
+      } catch (error) {
+        console.error('Lỗi khi lấy dữ liệu:', error);
+        setUsers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [meta.page, meta.pageSize]);
+
+  // Xử lý đổi trang
+  const handlePageChange = (page: number, pageSize?: number) => {
+    setMeta((prev) => ({
+      ...prev,
+      page,
+      pageSize: pageSize || prev.pageSize,
+    }));
+  };
+
+  const columns: ColumnsType<IGetUser> = [
+    { dataIndex: 'index', title: 'STT', width: 50, render: (_, __, index) => index + 1 + (meta.page - 1) * meta.pageSize },
+    { title: 'ID', dataIndex: '_id', render: (_, record) => <a style={{ color: '#007bff' }}>{record._id}</a> },
+    { title: 'Name', dataIndex: 'name' },
+    { title: 'Email', dataIndex: 'email' },
+    { title: 'Created at', dataIndex: 'createdAt', render: (_, record) => <>{record.createdAt ? dayjs(record.createdAt).format('YYYY-MM-DD') : 'N/A'}</> },
+    {
+      title: 'Action',
+      width: 100,
+      render: () => (
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <EditOutlined style={{ cursor: 'pointer', color: '#007bff' }} />
+          <DeleteOutlined style={{ cursor: 'pointer', color: '#dc3545' }} />
+          <MoreOutlined style={{ cursor: 'pointer', color: '#6c757d' }} />
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <div style={{ padding: 20 }}>
+      <h1 style={{ marginBottom: 16, color: '#333', fontSize: '24px' }}>Quản lý người dùng</h1>
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Button icon={<PlusOutlined />} type="primary">Thêm user</Button>
+          <Button icon={<ImportOutlined />} type="default">Import</Button>
+          <Button icon={<ExportOutlined />} type="default">Export</Button>
+        </div>
+      </div>
+
+      <Spin spinning={loading}>
+        <Table<IGetUser> columns={columns} dataSource={users} rowKey="_id" pagination={false} bordered />
+      </Spin>
+
+      {/* <Pagination
+        current={meta.page}
+        pageSize={meta.pageSize}
+        total={meta.total}
+        showSizeChanger
+        showTotal={(total, range) => `${range[0]}-${range[1]} trên tổng ${total} người dùng`}
+        onChange={handlePageChange}
+        style={{ marginTop: 16, textAlign: 'right' }}
+      /> */}
+    </div>
+  );
+};
+
+export default UserAdminMain;
